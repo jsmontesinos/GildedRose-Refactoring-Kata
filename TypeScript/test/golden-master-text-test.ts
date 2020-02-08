@@ -1,11 +1,13 @@
-import { Good, GildedRose } from '../app/gilded-rose';
+import { GildedRose } from '../app/gilded-rose';
+import { Good } from "../app/Good";
+import { LegendaryGood } from '../app/SulfurasGood';
 
 const goods = [
     new Good("+5 Dexterity Vest", 10, 20), //
     new Good("Aged Brie", 2, 0), //
     new Good("Elixir of the Mongoose", 5, 7), //
-    new Good("Sulfuras, Hand of Ragnaros", 0, 80), //
-    new Good("Sulfuras, Hand of Ragnaros", -1, 80),
+    new LegendaryGood("Sulfuras, Hand of Ragnaros", 0, 80), //
+    new LegendaryGood("Sulfuras, Hand of Ragnaros", -1, 80),
     new Good("Backstage passes to a TAFKAL80ETC concert", 15, 20),
     new Good("Backstage passes to a TAFKAL80ETC concert", 10, 49),
     new Good("Backstage passes to a TAFKAL80ETC concert", 5, 49),

@@ -1,5 +1,7 @@
 import { expect } from 'chai';
-import { Good, GildedRose } from '../app/gilded-rose';
+import { GildedRose } from '../app/gilded-rose';
+import { Good } from "../app/Good";
+import { LegendaryGood } from '../app/SulfurasGood';
 
 const AGED_BRIE = 'Aged Brie';
 const SULFURAS = 'Sulfuras, Hand of Ragnaros';
@@ -53,7 +55,7 @@ describe('Gilded Rose', function () {
     });
 
     it('should keep Sulfuras quality and never sold', () => {
-        const gildedRose = new GildedRose([ new Good(SULFURAS, 0, 40) ]);
+        const gildedRose = new GildedRose([ new LegendaryGood(SULFURAS, 0, 40) ]);
         const goods = gildedRose.processGoods();
         expect(goods[0].sellIn).to.gte(0);
         expect(goods[0].quality).to.equal(40);
