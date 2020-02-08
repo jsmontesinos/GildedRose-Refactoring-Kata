@@ -14,7 +14,9 @@ export class Good {
     }
 
     public decreaseQuality() {
-        this.quality = Math.max(0, this.quality - 1);
+        if (this.name != SULFURAS) {
+            this.quality = Math.max(0, this.quality - 1);
+        }
     }
 
     public increaseQuality() {
@@ -26,7 +28,9 @@ export class Good {
     }
 
     public decreaseSellIn() {
-        this.sellIn = this.sellIn - 1;
+        if (this.name != SULFURAS) {
+            this.sellIn = this.sellIn - 1;
+        }
     }
 }
 
@@ -41,9 +45,7 @@ export class GildedRose {
         for (let i = 0; i < this.goods.length; i++) {
             const good = this.goods[i];
             this.updateGoodQuality(good);
-            if (good.name != SULFURAS) {
-                good.decreaseSellIn();
-            }
+            good.decreaseSellIn();
         }
 
         return this.goods;
@@ -51,33 +53,23 @@ export class GildedRose {
 
     private updateGoodQuality(good: Good) {
         if (good.name != AGED_BRIE && good.name != BACKSTAGE_PASSES) {
-            if (good.quality > 0) {
-                if (good.name != SULFURAS) {
-                    good.decreaseQuality();
-                }
-            }
+            good.decreaseQuality();
         }
         else {
-            if (good.quality < 50) {
-                good.increaseQuality();
-                if (good.name == BACKSTAGE_PASSES) {
-                    if (good.sellIn < 11) {
-                        good.increaseQuality();
-                    }
-                    if (good.sellIn < 6) {
-                        good.increaseQuality();
-                    }
+            good.increaseQuality();
+            if (good.name == BACKSTAGE_PASSES) {
+                if (good.sellIn < 11) {
+                    good.increaseQuality();
+                }
+                if (good.sellIn < 6) {
+                    good.increaseQuality();
                 }
             }
         }
         if (good.sellIn <= 0) {
             if (good.name != AGED_BRIE) {
                 if (good.name != BACKSTAGE_PASSES) {
-                    if (good.quality > 0) {
-                        if (good.name != SULFURAS) {
-                            good.decreaseQuality();
-                        }
-                    }
+                    good.decreaseQuality();
                 }
                 else {
                     good.resetQuality();
