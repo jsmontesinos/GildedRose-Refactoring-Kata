@@ -1,3 +1,7 @@
+const AGED_BRIE = 'Aged Brie';
+const SULFURAS = 'Sulfuras, Hand of Ragnaros';
+const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
+
 export class Good {
     readonly name: string;
     sellIn: number;
@@ -37,7 +41,7 @@ export class GildedRose {
         for (let i = 0; i < this.goods.length; i++) {
             const good = this.goods[i];
             this.updateGoodQuality(good);
-            if (good.name != 'Sulfuras, Hand of Ragnaros') {
+            if (good.name != SULFURAS) {
                 good.decreaseSellIn();
             }
         }
@@ -46,9 +50,9 @@ export class GildedRose {
     }
 
     private updateGoodQuality(good: Good) {
-        if (good.name != 'Aged Brie' && good.name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if (good.name != AGED_BRIE && good.name != BACKSTAGE_PASSES) {
             if (good.quality > 0) {
-                if (good.name != 'Sulfuras, Hand of Ragnaros') {
+                if (good.name != SULFURAS) {
                     good.decreaseQuality();
                 }
             }
@@ -56,7 +60,7 @@ export class GildedRose {
         else {
             if (good.quality < 50) {
                 good.increaseQuality();
-                if (good.name == 'Backstage passes to a TAFKAL80ETC concert') {
+                if (good.name == BACKSTAGE_PASSES) {
                     if (good.sellIn < 11) {
                         good.increaseQuality();
                     }
@@ -67,10 +71,10 @@ export class GildedRose {
             }
         }
         if (good.sellIn <= 0) {
-            if (good.name != 'Aged Brie') {
-                if (good.name != 'Backstage passes to a TAFKAL80ETC concert') {
+            if (good.name != AGED_BRIE) {
+                if (good.name != BACKSTAGE_PASSES) {
                     if (good.quality > 0) {
-                        if (good.name != 'Sulfuras, Hand of Ragnaros') {
+                        if (good.name != SULFURAS) {
                             good.decreaseQuality();
                         }
                     }
