@@ -9,7 +9,7 @@ const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 describe('Gilded Rose', function () {
 
     it('should decrease sellin and quality values of products', function() {
-        const gildedRose = new GildedRose([ new Item('foo1', 4, 4) ]);
+        const gildedRose = new GildedRose([ new Item(FOO, 4, 4) ]);
         const items = gildedRose.updateQuality();
         expect(items[0].sellIn).to.equal(3);
         expect(items[0].quality).to.equal(3);
@@ -36,6 +36,13 @@ describe('Gilded Rose', function () {
         const items = gildedRose.updateQuality();
         expect(items[0].sellIn).to.equal(0);
         expect(items[0].quality).to.equal(1);
+    });
+
+    it('should increase Aged Brie quality by 2 if sellin is less than 0', () => {
+        const gildedRose = new GildedRose([ new Item(AGED_BRIE, -1, 2) ]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].sellIn).to.equal(-2);
+        expect(items[0].quality).to.equal(4);
     });
 
     it('should keep quality under 50', () => {
@@ -67,11 +74,11 @@ describe('Gilded Rose', function () {
         expect(items[0].quality).to.equal(42);
     });
 
-    it('should increase quality of backstage passes by 3 when sellin is 5 days or less', () => {
-        const gildedRose = new GildedRose([ new Item(BACKSTAGE_PASSES, 4, 40) ]);
+    it('should increase quality of backstage passes by 1 when sellin is 11 dats or more', () => {
+        const gildedRose = new GildedRose([ new Item(BACKSTAGE_PASSES, 11, 40) ]);
         const items = gildedRose.updateQuality();
-        expect(items[0].sellIn).to.equal(3);
-        expect(items[0].quality).to.equal(43);
+        expect(items[0].sellIn).to.equal(10);
+        expect(items[0].quality).to.equal(41);
     });
 
     it('should drop quality to 0 of backstage passes when sellin date has passed', () => {
