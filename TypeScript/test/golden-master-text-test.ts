@@ -1,29 +1,29 @@
 import { GildedRose } from '../app/gilded-rose';
-import { Good } from "../app/Good";
-import { LegendaryGood } from '../app/SulfurasGood';
+import { Item } from "../app/Item";
+import { LegendaryItem } from '../app/LegendaryItem';
 
-const goods = [
-    new Good("+5 Dexterity Vest", 10, 20), //
-    new Good("Aged Brie", 2, 0), //
-    new Good("Elixir of the Mongoose", 5, 7), //
-    new LegendaryGood("Sulfuras, Hand of Ragnaros", 0, 80), //
-    new LegendaryGood("Sulfuras, Hand of Ragnaros", -1, 80),
-    new Good("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-    new Good("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-    new Good("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+const items = [
+    new Item("+5 Dexterity Vest", 10, 20), //
+    new Item("Aged Brie", 2, 0), //
+    new Item("Elixir of the Mongoose", 5, 7), //
+    new LegendaryItem("Sulfuras, Hand of Ragnaros", 0, 80), //
+    new LegendaryItem("Sulfuras, Hand of Ragnaros", -1, 80),
+    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+    new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+    new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
     // this conjured item does not work properly yet
-    new Good("Conjured Mana Cake", 3, 6)];
+    new Item("Conjured Mana Cake", 3, 6)];
 
 
-const gildedRose = new GildedRose(goods);
+const gildedRose = new GildedRose(items);
 var days: number = 15;
 for (let i = 0; i < days; i++) {
     console.log("-------- day " + i + " --------");
     console.log("name, sellIn, quality");
-    goods.forEach(element => {
+    items.forEach(element => {
         console.log(element.name + ' ' + element.sellIn + ' ' + element.quality);
 
     });
     console.log();
-    gildedRose.processGoods();
+    gildedRose.processItems();
 }

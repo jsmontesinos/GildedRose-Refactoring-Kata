@@ -1,4 +1,4 @@
-export class Good {
+export class Item {
     readonly name: string;
     sellIn: number;
     quality: number;

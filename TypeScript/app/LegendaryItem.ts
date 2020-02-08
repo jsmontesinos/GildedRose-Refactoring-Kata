@@ -1,6 +1,6 @@
-import { Good } from './Good';
+import { Item } from './Item';
 
-export class LegendaryGood extends Good {
+export class LegendaryItem extends Item {
     public decreaseQuality() {
         // Sulfuras good does not decreases in quality
     }

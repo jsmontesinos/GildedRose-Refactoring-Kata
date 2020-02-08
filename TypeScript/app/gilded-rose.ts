@@ -1,51 +1,51 @@
-import { Good } from "./Good";
+import { Item } from "./Item";
 
 const AGED_BRIE = 'Aged Brie';
 const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
 export class GildedRose {
-    goods: Array<Good>;
+    items: Array<Item>;
 
-    constructor(goods = [] as Array<Good>) {
-        this.goods = goods;
+    constructor(items = [] as Array<Item>) {
+        this.items = items;
     }
 
-    processGoods() {
-        for (let i = 0; i < this.goods.length; i++) {
-            const good = this.goods[i];
-            this.updateGoodQuality(good);
-            good.decreaseSellIn();
+    processItems() {
+        for (let i = 0; i < this.items.length; i++) {
+            const item = this.items[i];
+            this.updateItemQuality(item);
+            item.decreaseSellIn();
         }
 
-        return this.goods;
+        return this.items;
     }
 
-    private updateGoodQuality(good: Good) {
-        if (good.name != AGED_BRIE && good.name != BACKSTAGE_PASSES) {
-            good.decreaseQuality();
+    private updateItemQuality(item: Item) {
+        if (item.name != AGED_BRIE && item.name != BACKSTAGE_PASSES) {
+            item.decreaseQuality();
         }
         else {
-            good.increaseQuality();
-            if (good.name == BACKSTAGE_PASSES) {
-                if (good.sellIn < 11) {
-                    good.increaseQuality();
+            item.increaseQuality();
+            if (item.name == BACKSTAGE_PASSES) {
+                if (item.sellIn < 11) {
+                    item.increaseQuality();
                 }
-                if (good.sellIn < 6) {
-                    good.increaseQuality();
+                if (item.sellIn < 6) {
+                    item.increaseQuality();
                 }
             }
         }
-        if (good.sellIn <= 0) {
-            if (good.name != AGED_BRIE) {
-                if (good.name != BACKSTAGE_PASSES) {
-                    good.decreaseQuality();
+        if (item.sellIn <= 0) {
+            if (item.name != AGED_BRIE) {
+                if (item.name != BACKSTAGE_PASSES) {
+                    item.decreaseQuality();
                 }
                 else {
-                    good.resetQuality();
+                    item.resetQuality();
                 }
             }
             else {
-                good.increaseQuality();
+                item.increaseQuality();
             }
         }
     }
