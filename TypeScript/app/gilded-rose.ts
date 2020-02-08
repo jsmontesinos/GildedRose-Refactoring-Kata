@@ -37,6 +37,9 @@ export class GildedRose {
         for (let i = 0; i < this.goods.length; i++) {
             const good = this.goods[i];
             this.updateGoodQuality(good);
+            if (good.name != 'Sulfuras, Hand of Ragnaros') {
+                good.decreaseSellIn();
+            }
         }
 
         return this.goods;
@@ -63,10 +66,7 @@ export class GildedRose {
                 }
             }
         }
-        if (good.name != 'Sulfuras, Hand of Ragnaros') {
-            good.decreaseSellIn();
-        }
-        if (good.sellIn < 0) {
+        if (good.sellIn <= 0) {
             if (good.name != 'Aged Brie') {
                 if (good.name != 'Backstage passes to a TAFKAL80ETC concert') {
                     if (good.quality > 0) {
