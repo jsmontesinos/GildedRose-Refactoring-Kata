@@ -1,4 +1,4 @@
-export class Item {
+export class Good {
     readonly name: string;
     sellIn: number;
     quality: number;
@@ -27,59 +27,60 @@ export class Item {
 }
 
 export class GildedRose {
-    items: Array<Item>;
+    goods: Array<Good>;
 
-    constructor(items = [] as Array<Item>) {
-        this.items = items;
+    constructor(goods = [] as Array<Good>) {
+        this.goods = goods;
     }
 
-    updateQuality() {
-        for (let i = 0; i < this.items.length; i++) {
-            this.updateItemQuality(this.items[i]);
+    processGoods() {
+        for (let i = 0; i < this.goods.length; i++) {
+            const good = this.goods[i];
+            this.updateGoodQuality(good);
         }
 
-        return this.items;
+        return this.goods;
     }
 
-    private updateItemQuality(item: Item) {
-        if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (item.quality > 0) {
-                if (item.name != 'Sulfuras, Hand of Ragnaros') {
-                    item.decreaseQuality();
+    private updateGoodQuality(good: Good) {
+        if (good.name != 'Aged Brie' && good.name != 'Backstage passes to a TAFKAL80ETC concert') {
+            if (good.quality > 0) {
+                if (good.name != 'Sulfuras, Hand of Ragnaros') {
+                    good.decreaseQuality();
                 }
             }
         }
         else {
-            if (item.quality < 50) {
-                item.increaseQuality();
-                if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    if (item.sellIn < 11) {
-                        item.increaseQuality();
+            if (good.quality < 50) {
+                good.increaseQuality();
+                if (good.name == 'Backstage passes to a TAFKAL80ETC concert') {
+                    if (good.sellIn < 11) {
+                        good.increaseQuality();
                     }
-                    if (item.sellIn < 6) {
-                        item.increaseQuality();
+                    if (good.sellIn < 6) {
+                        good.increaseQuality();
                     }
                 }
             }
         }
-        if (item.name != 'Sulfuras, Hand of Ragnaros') {
-            item.decreaseSellIn();
+        if (good.name != 'Sulfuras, Hand of Ragnaros') {
+            good.decreaseSellIn();
         }
-        if (item.sellIn < 0) {
-            if (item.name != 'Aged Brie') {
-                if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
-                    if (item.quality > 0) {
-                        if (item.name != 'Sulfuras, Hand of Ragnaros') {
-                            item.decreaseQuality();
+        if (good.sellIn < 0) {
+            if (good.name != 'Aged Brie') {
+                if (good.name != 'Backstage passes to a TAFKAL80ETC concert') {
+                    if (good.quality > 0) {
+                        if (good.name != 'Sulfuras, Hand of Ragnaros') {
+                            good.decreaseQuality();
                         }
                     }
                 }
                 else {
-                    item.resetQuality();
+                    good.resetQuality();
                 }
             }
             else {
-                item.increaseQuality();
+                good.increaseQuality();
             }
         }
     }
