@@ -1,10 +1,11 @@
 import { GildedRose } from '../app/gilded-rose';
 import { Item } from "../app/Item";
 import { LegendaryItem } from '../app/LegendaryItem';
+import { AgedItem } from '../app/AgedItem';
 
 const items = [
     new Item("+5 Dexterity Vest", 10, 20), //
-    new Item("Aged Brie", 2, 0), //
+    new AgedItem("Aged Brie", 2, 0), //
     new Item("Elixir of the Mongoose", 5, 7), //
     new LegendaryItem("Sulfuras, Hand of Ragnaros", 0, 80), //
     new LegendaryItem("Sulfuras, Hand of Ragnaros", -1, 80),

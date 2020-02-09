@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { GildedRose } from '../app/gilded-rose';
 import { Item } from "../app/Item";
 import { LegendaryItem } from '../app/LegendaryItem';
+import { AgedItem } from '../app/AgedItem';
 
 const AGED_BRIE = 'Aged Brie';
 const SULFURAS = 'Sulfuras, Hand of Ragnaros';
@@ -34,14 +35,14 @@ describe('Gilded Rose', function () {
     });
 
     it('should increase Aged Brie quality the older it gets', () => {
-        const gildedRose = new GildedRose([ new Item(AGED_BRIE, 1, 0) ]);
+        const gildedRose = new GildedRose([ new AgedItem(AGED_BRIE, 1, 0) ]);
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.equal(0);
         expect(items[0].quality).to.equal(1);
     });
 
     it('should increase Aged Brie quality by 2 if sellin is less than 0', () => {
-        const gildedRose = new GildedRose([ new Item(AGED_BRIE, -1, 2) ]);
+        const gildedRose = new GildedRose([ new AgedItem(AGED_BRIE, -1, 2) ]);
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.equal(-2);
         expect(items[0].quality).to.equal(4);

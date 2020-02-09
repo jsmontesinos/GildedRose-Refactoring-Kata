@@ -1,4 +1,3 @@
-const AGED_BRIE = 'Aged Brie';
 const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
 export class Item {
@@ -29,7 +28,7 @@ export class Item {
     }
 
     public updateQuality() {
-        if (this.name != AGED_BRIE && this.name != BACKSTAGE_PASSES) {
+        if (this.name != BACKSTAGE_PASSES) {
             this.decreaseQuality();
         }
         else {
@@ -44,16 +43,11 @@ export class Item {
             }
         }
         if (this.sellIn <= 0) {
-            if (this.name != AGED_BRIE) {
-                if (this.name != BACKSTAGE_PASSES) {
-                    this.decreaseQuality();
-                }
-                else {
-                    this.resetQuality();
-                }
+            if (this.name != BACKSTAGE_PASSES) {
+                this.decreaseQuality();
             }
             else {
-                this.increaseQuality();
+                this.resetQuality();
             }
         }
     }
