@@ -1,10 +1,10 @@
 import { Item } from './Item';
 
 export class LegendaryItem extends Item {
-    public decreaseQuality() {
+    protected decreaseQuality() {
         // Sulfuras good does not decreases in quality
     }
-    public decreaseSellIn() {
+    protected decreaseSellIn() {
         // Sulfuras good does not decreases sellIn
     }
 }

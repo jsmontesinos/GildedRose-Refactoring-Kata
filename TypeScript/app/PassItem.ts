@@ -1,7 +1,7 @@
 import { Item } from "./Item";
 
 export class PassItem extends Item {
-    public updateQuality() {
+    protected updateQuality() {
         this.increaseQuality();
         if (this.sellIn < 11) {
             this.increaseQuality();

@@ -8,11 +8,7 @@ export class GildedRose {
     }
 
     processItems() {
-        for (let i = 0; i < this.items.length; i++) {
-            const item = this.items[i];
-            item.updateQuality();
-            item.decreaseSellIn();
-        }
+        this.items.forEach(item => item.addDay());
 
         return this.items;
     }

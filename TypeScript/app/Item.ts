@@ -23,14 +23,19 @@ export class Item {
         this.quality = 0;
     }
     
-    public decreaseSellIn() {
+    protected decreaseSellIn() {
         this.sellIn = this.sellIn - 1;
     }
 
-    public updateQuality() {
+    protected updateQuality() {
         this.decreaseQuality();
         if (this.sellIn <= 0) {
             this.decreaseQuality();
         }
+    }
+
+    public addDay() {
+        this.updateQuality();
+        this.decreaseSellIn();
     }
 }
