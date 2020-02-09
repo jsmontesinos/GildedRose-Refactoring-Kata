@@ -3,6 +3,7 @@ import { GildedRose } from '../app/gilded-rose';
 import { Item } from "../app/Item";
 import { LegendaryItem } from '../app/LegendaryItem';
 import { AgedItem } from '../app/AgedItem';
+import { PassItem } from '../app/PassItem';
 
 const AGED_BRIE = 'Aged Brie';
 const SULFURAS = 'Sulfuras, Hand of Ragnaros';
@@ -63,7 +64,7 @@ describe('Gilded Rose', function () {
     });
 
     it('should increase quality of backstage passes by 3 when sellin is 5 days or less', () => {
-        const gildedRose = new GildedRose([ new Item(BACKSTAGE_PASSES, 4, 40) ]);
+        const gildedRose = new GildedRose([ new PassItem(BACKSTAGE_PASSES, 4, 40) ]);
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.equal(3);
         expect(items[0].quality).to.equal(43);
@@ -71,21 +72,21 @@ describe('Gilded Rose', function () {
 
 
     it('should increase quality of backstage passes by 2 when sellin is 10 days or less', () => {
-        const gildedRose = new GildedRose([ new Item(BACKSTAGE_PASSES, 7, 40) ]);
+        const gildedRose = new GildedRose([ new PassItem(BACKSTAGE_PASSES, 7, 40) ]);
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.equal(6);
         expect(items[0].quality).to.equal(42);
     });
 
     it('should increase quality of backstage passes by 1 when sellin is 11 dats or more', () => {
-        const gildedRose = new GildedRose([ new Item(BACKSTAGE_PASSES, 11, 40) ]);
+        const gildedRose = new GildedRose([ new PassItem(BACKSTAGE_PASSES, 11, 40) ]);
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.equal(10);
         expect(items[0].quality).to.equal(41);
     });
 
     it('should drop quality to 0 of backstage passes when sellin date has passed', () => {
-        const gildedRose = new GildedRose([ new Item(BACKSTAGE_PASSES, 0, 40) ]);
+        const gildedRose = new GildedRose([ new PassItem(BACKSTAGE_PASSES, 0, 40) ]);
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.equal(-1);
         expect(items[0].quality).to.equal(0);

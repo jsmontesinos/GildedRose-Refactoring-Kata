@@ -28,27 +28,9 @@ export class Item {
     }
 
     public updateQuality() {
-        if (this.name != BACKSTAGE_PASSES) {
-            this.decreaseQuality();
-        }
-        else {
-            this.increaseQuality();
-            if (this.name == BACKSTAGE_PASSES) {
-                if (this.sellIn < 11) {
-                    this.increaseQuality();
-                }
-                if (this.sellIn < 6) {
-                    this.increaseQuality();
-                }
-            }
-        }
+        this.decreaseQuality();
         if (this.sellIn <= 0) {
-            if (this.name != BACKSTAGE_PASSES) {
-                this.decreaseQuality();
-            }
-            else {
-                this.resetQuality();
-            }
+            this.decreaseQuality();
         }
     }
 }
