@@ -4,11 +4,13 @@ import { Item } from "../app/Item";
 import { LegendaryItem } from '../app/LegendaryItem';
 import { AgedItem } from '../app/AgedItem';
 import { PassItem } from '../app/PassItem';
+import { ConjuredItem } from '../app/ConjuredItem';
 
 const AGED_BRIE = 'Aged Brie';
 const SULFURAS = 'Sulfuras, Hand of Ragnaros';
 const FOO = 'foo';
 const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
+const CONJURED = 'Conjured Mana Cake';
 
 describe('Gilded Rose', function () {
 
@@ -90,5 +92,14 @@ describe('Gilded Rose', function () {
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.equal(-1);
         expect(items[0].quality).to.equal(0);
+    });
+
+    it('should decrease quality of conjured products twice fast as normal items', () => {
+        const gildedRose = new GildedRose([ new ConjuredItem(CONJURED, 10, 40), new ConjuredItem(CONJURED, 0, 40) ]);
+        const items = gildedRose.processItems();
+        expect(items[0].sellIn).to.equal(9);
+        expect(items[0].quality).to.equal(38);
+        expect(items[1].sellIn).to.equal(-1);
+        expect(items[1].quality).to.equal(36);
     });
 });
