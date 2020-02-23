@@ -59,10 +59,10 @@ describe('Gilded Rose', function () {
     });
 
     it('should keep Sulfuras quality and never sold', () => {
-        const gildedRose = new GildedRose([ new LegendaryItem(SULFURAS, 0, 40) ]);
+        const gildedRose = new GildedRose([ new LegendaryItem(SULFURAS, 0, 80) ]);
         const items = gildedRose.processItems();
         expect(items[0].sellIn).to.gte(0);
-        expect(items[0].quality).to.equal(40);
+        expect(items[0].quality).to.equal(80);
     });
 
     it('should increase quality of backstage passes by 3 when sellin is 5 days or less', () => {
